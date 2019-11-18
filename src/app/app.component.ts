@@ -12,14 +12,14 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
    // Your web app's Firebase configuration
   var firebaseConfig = {
-    apiKey: "AIzaSyDfCCqwL4UCsbP6NhHt0B3iwxfV-k3_yFc",
-    authDomain: "jta-instagram-clone-920d8.firebaseapp.com",
-    databaseURL: "https://jta-instagram-clone-920d8.firebaseio.com",
-    projectId: "jta-instagram-clone-920d8",
-    storageBucket: "jta-instagram-clone-920d8.appspot.com",
-    messagingSenderId: "521554823508",
-    appId: "1:521554823508:web:a9aeaacc0e8ba1b65720c1",
-    measurementId: "G-W7QPJ60HQZ"
+    apiKey: "AIzaSyD5ziaLX3FbnI-b1i7n61zPzWCRgUh-EZs",
+    authDomain: "jta-insta-clone-44a6d.firebaseapp.com",
+    databaseURL: "https://jta-insta-clone-44a6d.firebaseio.com",
+    projectId: "jta-insta-clone-44a6d",
+    storageBucket: "jta-insta-clone-44a6d.appspot.com",
+    messagingSenderId: "550991098307",
+    appId: "1:550991098307:web:e46cefc25e9f73ede70d76",
+    measurementId: "G-8Z76P2P76N"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
