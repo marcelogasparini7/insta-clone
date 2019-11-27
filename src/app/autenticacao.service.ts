@@ -6,46 +6,46 @@ import { Router } from '@angular/router'
 @Injectable()
 export class Autenticacao {
 
-    public  token_id: string
+    public token_id: string
 
-    constructor(private router: Router){}
+    constructor(private router: Router) { }
 
     public cadastrarUsuario(usuario: Usuario): Promise<any> {
         return firebase.auth().createUserWithEmailAndPassword(usuario.email, usuario.senha)
-        .then((resposta: any) => {
-            //remover a senha do atributo senha do objeto usuario
-            delete usuario.senha
+            .then((resposta: any) => {
+                //remover a senha do atributo senha do objeto usuario
+                delete usuario.senha
 
-            //registrando dados complementares do usuario no path email na base 64
-            firebase.database().ref(`usuario_detalhe/${btoa(usuario.email)}`)
-                    .set( usuario )
-        })
-        .catch((error: Error) => {
-            console.log(error)
+                //registrando dados complementares do usuario no path email na base 64
+                firebase.database().ref(`usuario_detalhe/${btoa(usuario.email)}`)
+                    .set(usuario)
+            })
+            .catch((error: Error) => {
+                console.log(error)
 
-        })
+            })
     }
 
-    public autenticar(email: string, senha: string) : void {
+    public autenticar(email: string, senha: string): void {
         firebase.auth().signInWithEmailAndPassword(email, senha)
-        .then((resposta: any) => {
-            firebase.auth().currentUser.getIdToken()
-            .then((idToken: string) => {
-                this.token_id = idToken
-                localStorage.setItem('idToken', idToken)
-                this.router.navigate(['/home'])
+            .then((resposta: any) => {
+                firebase.auth().currentUser.getIdToken()
+                    .then((idToken: string) => {
+                        this.token_id = idToken
+                        localStorage.setItem('idToken', idToken)
+                        this.router.navigate(['/home'])
+                    })
             })
-        })
-        .catch((error: Error) => console.log(error))
+            .catch((error: Error) => console.log(error))
     }
 
     public autenticado(): boolean {
 
-        if(this.token_id === undefined && localStorage.getItem('idToken') != null) {
+        if (this.token_id === undefined && localStorage.getItem('idToken') != null) {
             this.token_id = localStorage.getItem('idToken')
         }
 
-        if(this.token_id === undefined) {
+        if (this.token_id === undefined) {
             this.router.navigate(['/'])
         }
 
@@ -54,11 +54,11 @@ export class Autenticacao {
 
     public sair(): void {
         firebase.auth().signOut()
-        .then(() => {
-            localStorage.removeItem('idToken')
-            this.token_id = undefined
-            this.router.navigate(['/'])
-        })
-        
+            .then(() => {
+                localStorage.removeItem('idToken')
+                this.token_id = undefined
+                this.router.navigate(['/'])
+            })
+
     }
 }

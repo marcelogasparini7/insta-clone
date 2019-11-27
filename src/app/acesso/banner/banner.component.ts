@@ -1,5 +1,5 @@
-import { Component, OnInit} from '@angular/core';
-import {trigger, state, style, transition, animate} from '@angular/animations'
+import { Component, OnInit } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations'
 
 import { Imagem } from './imagem.model'
 
@@ -39,12 +39,12 @@ export class BannerComponent implements OnInit {
   }
 
   public logicaRotacao(): void {
-    
+
     //auxilia na exibição da imagem seguinte
     let idx: number
 
     //ocultar imagem
-    for(let i:number = 0; i <= 4; i++) {
+    for (let i: number = 0; i <= 4; i++) {
 
       if (this.imagens[i].estado === 'visivel') {
         this.imagens[i].estado = 'escondido'
